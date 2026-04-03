@@ -1,31 +1,45 @@
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { Features } from "./components/Features";
-import { PricingSection } from "./components/PricingSection";
-import { Footer } from "./components/Footer";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import { Filter, Search } from "lucide-react";
+import { useState } from "react";
+// Importy z tvojich komponentov
+import { PassCard } from "../components/PassCard";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
+export default function ProductsPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  const products = [
+    {
+      id: "1",
+      title: "Clash of Clans Gold Pass",
+      image: "/coc.png",
+      originalPrice: 6.50,
+      discountedPrice: 3.99,
+      discount: 39,
+      features: ["Všetky výhody", "Rýchly support"],
+      popular: true,
+      category: "pass",
+      game: "clash-of-clans"
+    }
+  ];
+
   return (
-    <main className="min-h-screen bg-[#0d0d1a] text-white">
-      {/* Horná lišta */}
+    <main className="min-h-screen bg-[#0d0d1a]">
       <Header />
-
-      {/* Hlavná Hero sekcia s bublinami */}
-      <Hero />
-      
-      {/* Sekcia s výhodami (Features) */}
-      <div id="features" className="relative z-10">
-        <Features />
+      <div className="pt-32 pb-20 max-w-7xl mx-auto px-4">
+        <h1 className="text-4xl font-black mb-10 text-transparent bg-clip-text text-center" style={{ backgroundImage: 'var(--gradient-btn)' }}>
+          Naša ponuka
+        </h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {products.map((p) => (
+            <PassCard key={p.id} {...p} />
+          ))}
+        </div>
       </div>
-
-      {/* Sekcia s ponukou passov (Pricing) */}
-      <div id="pricing" className="relative z-10 py-10">
-        {/* Jemná žiara v pozadí pod kartami */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-[var(--primary-neon)]/5 blur-[120px] pointer-events-none" />
-        <PricingSection />
-      </div>
-
-      {/* Päta webu */}
       <Footer />
     </main>
   );

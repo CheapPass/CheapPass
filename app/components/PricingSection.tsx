@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PassCard } from "./PassCard";
+import { PassCard } from "../components/PassCard";
 
 const passes = [
-  {
+{
     title: "Clash of Clans Gold Pass",
     image: "/coc.png", // Opravená cesta k obrázku
     originalPrice: 6.50,
