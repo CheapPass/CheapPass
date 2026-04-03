@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion"; // Opravený import
+import { motion } from "framer-motion";
 import { TrendingDown, Star } from "lucide-react";
 
 const deals = [
@@ -9,7 +9,7 @@ const deals = [
     passName: "Gold Pass",
     originalPrice: 6.50,
     newPrice: 3.99,
-    color: "#ffcc00", // Placeholder farba
+    image: "/coc.png", // Cesta k obrázku v public/
     position: { top: "20%", left: "8%" },
     delay: 0,
     type: "deal",
@@ -19,7 +19,7 @@ const deals = [
     passName: "Royal Pass",
     originalPrice: 11.50,
     newPrice: 6.99,
-    color: "#ff0044", 
+    image: "/cr.png",
     position: { top: "15%", right: "10%" },
     delay: 0.3,
     type: "deal",
@@ -29,7 +29,7 @@ const deals = [
     passName: "Brawl Pass",
     originalPrice: 9.99,
     newPrice: 6.49,
-    color: "#00aaff",
+    image: "/bs.png",
     position: { bottom: "12%", right: "8%" },
     delay: 0.6,
     type: "deal",
@@ -38,7 +38,7 @@ const deals = [
     name: "Martin K.",
     text: "Super rýchle doručenie! Pass prišiel na druhý deň.",
     rating: 5,
-    color: "#8a2be2",
+    image: "/martin.png",
     position: { bottom: "20%", left: "6%" },
     delay: 0.9,
     type: "review",
@@ -47,7 +47,7 @@ const deals = [
     name: "Lucia P.",
     text: "Lepšie ceny ako v hre, určite odporúčam!",
     rating: 5,
-    color: "#00f5ff",
+    image: "/lucia.png",
     position: { top: "45%", right: "5%" },
     delay: 1.2,
     type: "review",
@@ -57,8 +57,10 @@ const deals = [
 export function FloatingReviews() {
   return (
     <>
-      {deals.map((deal: any, index) => {
-        const savings = deal.type === "deal" ? Math.round(((deal.originalPrice - deal.newPrice) / deal.originalPrice) * 100) : 0;
+      {deals.map((deal, index) => {
+        const savings = (deal.type === "deal" && deal.originalPrice && deal.newPrice) 
+  ? Math.round(((deal.originalPrice - deal.newPrice) / deal.originalPrice) * 100) 
+  : 0;
         
         return (
           <motion.div
@@ -66,24 +68,41 @@ export function FloatingReviews() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: deal.delay + 1.2 }}
-            className="hidden lg:block absolute z-20"
+            className="hidden lg:block absolute z-20 pointer-events-none"
             style={{ ...deal.position }}
           >
             <motion.div
-              animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-              transition={{ duration: 5 + index, repeat: Infinity, ease: "easeInOut" }}
-              className="backdrop-blur-xl rounded-2xl p-3 shadow-2xl border w-[190px]"
+              animate={{ 
+                y: [0, -12, 0], 
+                rotate: [0, 1, 0, -1, 0] 
+              }}
+              transition={{ 
+                duration: 6 + index, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="backdrop-blur-xl rounded-2xl p-3 shadow-2xl border w-[200px]"
               style={{
-                background: 'rgba(26, 26, 46, 0.8)',
+                background: 'rgba(26, 26, 46, 0.85)',
                 borderColor: 'rgba(138, 43, 226, 0.3)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
               }}
             >
               <div className="flex items-center gap-3 mb-2">
-                <div 
-                  className="w-8 h-8 rounded-lg flex-shrink-0"
-                  style={{ background: deal.color || 'var(--gradient-btn)' }}
-                />
+                {/* Obrázok/Ikona */}
+                <div className="w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden bg-gray-800 border border-white/10">
+                  <img 
+                    src={deal.image} 
+                    alt={deal.game || deal.name} 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                       // Ak by sa obrázok nenačítal, dáme tam aspoň fialovú farbu
+                       (e.target as any).style.display = 'none';
+                       (e.target as any).parentElement.style.background = 'var(--gradient-btn)';
+                    }}
+                  />
+                </div>
+                
                 <div className="flex-1 min-w-0">
                   <h4 className="font-bold truncate text-[13px] text-white">
                     {deal.game || deal.name}
@@ -93,7 +112,7 @@ export function FloatingReviews() {
                   ) : (
                     <div className="flex gap-0.5">
                       {[...Array(deal.rating)].map((_, i) => (
-                        <Star key={i} className="w-2 h-2 fill-cyan-400 text-cyan-400" />
+                        <Star key={i} className="w-2.5 h-2.5 fill-[var(--secondary-neon)] text-[var(--secondary-neon)]" />
                       ))}
                     </div>
                   )}
@@ -101,12 +120,23 @@ export function FloatingReviews() {
               </div>
 
               {deal.type === "deal" ? (
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] line-through text-gray-500">€{deal.originalPrice}</span>
-                    <span className="text-[13px] font-bold text-cyan-400">€{deal.newPrice}</span>
-                  </div>
-                  <div className="bg-cyan-500/10 border border-cyan-500/30 px-1.5 py-0.5 rounded text-[10px] font-bold text-cyan-400 flex items-center gap-1">
+                <div className="flex items-center justify-between mt-1">
+                <div className="flex items-center gap-2">
+                {/* Zobrazíme pôvodnú cenu, len ak existuje */}
+                {deal.originalPrice !== undefined && (
+                    <span className="text-[11px] line-through text-gray-500">
+                    €{Number(deal.originalPrice).toFixed(2)}
+                    </span>
+                )}
+                
+                {/* Zobrazíme novú cenu, len ak existuje */}
+                {deal.newPrice !== undefined && (
+                    <span className="text-[14px] font-bold text-[var(--secondary-neon)]">
+                    €{Number(deal.newPrice).toFixed(2)}
+                    </span>
+                )}
+                </div>
+                  <div className="bg-[var(--secondary-neon)]/10 border border-[var(--secondary-neon)]/30 px-2 py-0.5 rounded-md text-[10px] font-black text-[var(--secondary-neon)] flex items-center gap-1">
                     <TrendingDown className="w-3 h-3" /> -{savings}%
                   </div>
                 </div>
