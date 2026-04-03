@@ -49,11 +49,11 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Info className="w-4 h-4 text-blue-400" />
-                <span className="text-[var(--secondary-neon)]">24/7 Zákaznícka podpora</span>
+                <span className="text-gray-400">24/7 Zákaznícka podpora</span>
               </div>
               <div className="flex items-center gap-2 pt-2 border-t border-white/5">
                 <Shield className="w-4 h-4 text-blue-500" />
-                <span className="text-[10px] font-black tracking-widest text-[var(--secondary-neon)]">100% Bezpečné</span>
+                <span className="text-[10px] font-black tracking-widest text-gray-400">100% Bezpečné</span>
               </div>
             </div>
           </div>
