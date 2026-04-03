@@ -1,12 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // Opravené na framer-motion
 import { Filter, Search } from "lucide-react";
 import { useState } from "react";
-// Používame @/ aby sme sa vyhli chybám s cestami
 import { PassCard } from "../components/PassCard";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 
 interface Product {
   id: string;
@@ -29,7 +26,7 @@ const products: Product[] = [
     originalPrice: 6.50,
     discountedPrice: 3.99,
     discount: 39,
-    features: ["Exkluzívne herné predmety", "20% zľava v obchode", "Bonus stavebník"],
+    features: ["Exkluzívne predmety", "20% zľava v obchode", "Bonus stavebník"],
     popular: true,
     category: "pass",
     game: "clash-of-clans",
@@ -41,11 +38,12 @@ const products: Product[] = [
     originalPrice: 11.50,
     discountedPrice: 6.99,
     discount: 39,
-    features: ["Neobmedzené odomykanie truhlíc", "Exkluzívne tower skiny", "Bonus emotes"],
+    features: ["Truhlica s odmenami", "Tower skiny", "Bonus emotes"],
     popular: true,
     category: "pass",
     game: "clash-royale",
-  }
+  },
+  // Tu si doplň tie ďalšie top-upy čo si mal...
 ];
 
 export default function ProductsPage() {
@@ -69,51 +67,40 @@ export default function ProductsPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#0d0d1a] text-white">
-      <Header />
-      
-      <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-black mb-4 text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-btn)' }}>
+    <div className="min-h-screen pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text" style={{ backgroundImage: 'var(--gradient-btn)' }}>
             Naša ponuka
           </h1>
-          <p className="text-gray-400 text-sm">{filteredProducts.length} dostupných produktov</p>
+          <p className="text-gray-400">{filteredProducts.length} produktov</p>
         </motion.div>
 
         {/* Filtre */}
-        <div className="bg-[#16162d] border border-purple-500/10 p-6 rounded-3xl mb-12 shadow-2xl">
+        <div className="rounded-2xl border p-6 mb-8 bg-[#16162d] border-purple-500/20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
               <input 
                 type="text" placeholder="Hľadať..." 
-                className="w-full pl-10 pr-4 py-3 bg-[#0d0d1a] border border-white/5 rounded-xl text-sm focus:border-purple-500 outline-none transition-all"
+                className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#0d0d1a] border border-purple-500/30 text-white outline-none focus:border-purple-500"
                 value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
 
-            <select 
-              className="bg-[#0d0d1a] border border-white/5 p-3 rounded-xl text-sm outline-none cursor-pointer focus:border-purple-500"
-              value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value as any)}
-            >
+            <select className="bg-[#0d0d1a] border border-purple-500/30 p-2 rounded-lg outline-none" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value as any)}>
               <option value="all">Všetky kategórie</option>
               <option value="pass">Mesačné passy</option>
               <option value="topup">Top-up (Gems)</option>
             </select>
 
-            <select 
-              className="bg-[#0d0d1a] border border-white/5 p-3 rounded-xl text-sm outline-none cursor-pointer focus:border-purple-500"
-              value={selectedGame} onChange={(e) => setSelectedGame(e.target.value as any)}
-            >
+            <select className="bg-[#0d0d1a] border border-purple-500/30 p-2 rounded-lg outline-none" value={selectedGame} onChange={(e) => setSelectedGame(e.target.value as any)}>
               <option value="all">Všetky hry</option>
               <option value="clash-of-clans">Clash of Clans</option>
               <option value="clash-royale">Clash Royale</option>
             </select>
 
-            <select 
-              className="bg-[#0d0d1a] border border-white/5 p-3 rounded-xl text-sm outline-none cursor-pointer focus:border-purple-500"
-              value={sortBy} onChange={(e) => setSortBy(e.target.value as any)}
-            >
+            <select className="bg-[#0d0d1a] border border-purple-500/30 p-2 rounded-lg outline-none" value={sortBy} onChange={(e) => setSortBy(e.target.value as any)}>
               <option value="price-low">Cena: Od najnižšej</option>
               <option value="price-high">Cena: Od najvyššej</option>
               <option value="discount">Najväčšia zľava</option>
@@ -121,15 +108,12 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        {/* Grid produktov */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product) => (
             <PassCard key={product.id} {...product} />
           ))}
         </div>
       </div>
-
-      <Footer />
-    </main>
+    </div>
   );
 }
