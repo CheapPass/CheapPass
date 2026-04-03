@@ -110,7 +110,7 @@ export function Hero() {
         >
           <div className="group cursor-default">
             <div className="text-4xl font-black mb-1.5 text-white group-hover:text-[var(--secondary-neon)] transition-colors">100%</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: 'var(--text-muted)' }}>Bezpečná Garancia</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: 'var(--text-muted)' }}>Garancia spokojnosti</div>
           </div>
           <div className="group cursor-default">
             <div className="text-4xl font-black mb-1.5 text-white group-hover:text-[var(--primary-neon)] transition-colors">200+</div>
