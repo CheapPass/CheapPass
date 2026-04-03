@@ -94,7 +94,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   </div>
                   <div>
                     <h3 className="font-bold text-white group-hover:text-purple-400 transition-colors">E-mailová podpora</h3>
-                    <p className="text-xs text-gray-500">support@cheappass.eu</p>
+                    <p className="text-xs text-gray-500">info.cheappass@gmail.com</p>
                   </div>
                 </motion.a>
               </div>
@@ -102,7 +102,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               {/* Päta modalu */}
               <div className="mt-8 pt-6 border-t border-white/5 text-center">
                 <p className="text-[10px] uppercase tracking-widest font-bold text-gray-500">
-                  Dostupnosť: Pon - Ned (9:00 - 22:00)
+                  Odpovedáme väčšinou hneď, určite do 24 hodín ⚡
                 </p>
               </div>
             </motion.div>

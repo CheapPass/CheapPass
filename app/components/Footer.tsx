@@ -52,8 +52,8 @@ export function Footer() {
                 <span className="text-gray-200">24/7 Zákaznícka podpora</span>
               </div>
               <div className="flex items-center gap-2 pt-2 border-t border-white/5">
-                <Shield className="w-4 h-4 text-green-500" />
-                <span className="text-[10px] uppercase font-black tracking-widest text-green-500">100% Bezpečné</span>
+                <Shield className="w-4 h-4 text-blue-500" />
+                <span className="text-[10px] font-black tracking-widest text-blue-500">100% Bezpečné</span>
               </div>
             </div>
           </div>
