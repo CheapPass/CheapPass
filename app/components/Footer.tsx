@@ -51,14 +51,15 @@ export function Footer() {
                 <Info className="w-4 h-4 text-blue-400" />
                 <span className="text-gray-400">24/7 Zákaznícka podpora</span>
               </div>
-              <div className="flex items-center gap-2 pt-2 border-t border-white/5">
+                <div className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-blue-500" />
-                <span className="text-[10px] font-black tracking-widest text-gray-400">100% Bezpečné</span>
-              </div>
+                <span className="text-[10px] font-black tracking-widest text-gray-400">
+                    100% Bezpečné
+                </span>
+                </div>
             </div>
           </div>
         </div>
-
         <div className="pt-8 text-center border-t border-white/5">
           <p className="text-[10px] text-gray-600 uppercase tracking-[0.2em]">© 2026 CheapPass.eu • Made for gamers</p>
         </div>

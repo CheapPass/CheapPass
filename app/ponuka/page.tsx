@@ -26,7 +26,7 @@ const products: Product[] = [
     originalPrice: 6.50,
     discountedPrice: 3.99,
     discount: 39,
-    features: ["Exkluzívne predmety", "20% zľava v obchode", "Bonus stavebník"],
+    features: ["Exkluzívne predmety", "Skin na hrdinu", "Magické predmety každý deň"],
     popular: true,
     category: "pass",
     game: "clash-of-clans",

@@ -6,14 +6,14 @@ import { PassCard } from "../components/PassCard";
 const passes = [
 {
     title: "Clash of Clans Gold Pass",
-    image: "/coc.png", // Opravená cesta k obrázku
+    image: "/coc.png",
     originalPrice: 6.50,
     discountedPrice: 3.99,
     discount: 39,
     features: [
       "Exkluzívne herné predmety",
-      "20% zľava v obchode",
-      "Bonus stavebník",
+      "Skin na hrdinu",
+      "Bonus loot",
       "Magické predmety každý deň",
     ],
     popular: true,
@@ -44,6 +44,7 @@ const passes = [
       "Rýchlejšie eventy",
       "Špeciálne dekorácie",
     ],
+    popular: true,
   },
 ];
 
