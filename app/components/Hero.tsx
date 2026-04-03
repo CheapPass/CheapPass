@@ -86,7 +86,7 @@ export function Hero() {
             style={{ background: 'var(--gradient-btn)' }}
           >
             <Gamepad2 className="w-5 h-5 mr-2.5" />
-            Prehliadnuť passy
+            Prehliadnuť ponuku
           </Button>
           
           <Button
