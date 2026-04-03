@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Tvoje základné farby a fonty */
+  --font-size: 16px;
+  --bg-color: #0d0d1a;
+  --card-bg: #1a1a2e;
+  --primary-neon: #8a2be2;
+  --secondary-neon: #00f5ff;
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --gradient-btn: linear-gradient(135deg, #8a2be2 0%, #00f5ff 100%);
+  
+  /* Systémové premenné pre Tailwind v4 */
+  --background: #0d0d1a;
+  --foreground: #ffffff;
+  --card: #1a1a2e;
+  --card-foreground: #ffffff;
+  --popover: #1a1a2e;
+  --popover-foreground: #ffffff;
+  --primary: #8a2be2;
+  --primary-foreground: #ffffff;
+  --secondary: #00f5ff;
+  --secondary-foreground: #0d0d1a;
+  --muted: #1a1a2e;
+  --muted-foreground: #94a3b8;
+  --accent: #8a2be2;
+  --accent-foreground: #ffffff;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(138, 43, 226, 0.2);
+  --input: transparent;
+  --input-background: #1a1a2e;
+  --switch-background: #1a1a2e;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #8a2be2;
+  --radius: 0.625rem;
+
+  /* Sidebar a Grafy */
+  --sidebar: #1a1a2e;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #8a2be2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #00f5ff;
+  --sidebar-accent-foreground: #0d0d1a;
+  --sidebar-border: rgba(138, 43, 226, 0.2);
+  --sidebar-ring: #8a2be2;
+  
+  --chart-1: #8a2be2;
+  --chart-2: #00f5ff;
+  --chart-3: #ff6b9d;
+  --chart-4: #feca57;
+  --chart-5: #48dbfb;
 }
 
+/* Nastavenie Tailwind v4 témy */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  /* Typografia */
+  h1 { @apply text-2xl font-medium leading-relaxed; }
+  h2 { @apply text-xl font-medium leading-relaxed; }
+  h3 { @apply text-lg font-medium leading-relaxed; }
+  h4 { @apply text-base font-medium leading-relaxed; }
+  
+  label, button { @apply text-base font-medium leading-relaxed; }
+  input { @apply text-base font-normal leading-relaxed; }
 }
