@@ -36,7 +36,11 @@ export function Header() {
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                   display: 'inline-block',
-                  marginLeft: '1px' // Malý odstup od textu
+                  marginLeft: '1px',
+                  // PRIDANÉ VLASTNOSTI:
+                  fontWeight: '900',          // Extra tučné (Bold)
+                  fontSize: '1.5rem',         // Zväčšenie (uprav si podľa chuti, napr. 2rem, 24px a pod.)
+                  textTransform: 'uppercase', // Voliteľné: ak chceš, aby to bolo celé VEĽKÝM PÍSMOM
                 }}>
                   CheapPass.eu
                 </span>
