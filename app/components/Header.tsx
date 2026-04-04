@@ -25,12 +25,17 @@ export function Header() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20"> {/* Zväčšená výška headera na h-20 pre väčšie logo */}
             
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group transition-transform hover:scale-105 outline-none">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center p-2 transition-transform group-hover:rotate-12 shadow-lg shadow-purple-500/20" style={{ background: 'var(--gradient-btn)' }}>
-                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain brightness-0 invert" />
+            <Link href="/" className="flex items-center gap-3 group transition-transform hover:scale-105 outline-none">
+              {/* Zväčšený kontajner (w-12 h-12) a posun obrázka (translate-x) */}
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center p-2.5 transition-transform group-hover:rotate-12 shadow-lg shadow-purple-500/20" style={{ background: 'var(--gradient-btn)' }}>
+                <img 
+                  src="/logo.png" 
+                  alt="Logo" 
+                  className="w-full h-full object-contain brightness-0 invert transform translate-x-[2px]" 
+                />
               </div>
                 <span style={{
                   background: 'var(--gradient-btn)',
@@ -38,16 +43,15 @@ export function Header() {
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                   display: 'inline-block',
-                  marginLeft: '1px',
-                  // PRIDANÉ VLASTNOSTI:
-                  fontWeight: '900',          // Extra tučné (Bold)
-                  fontSize: '1.5rem',         // Zväčšenie (uprav si podľa chuti, napr. 2rem, 24px a pod.)
+                  marginLeft: '2px',
+                  fontWeight: '900',
+                  fontSize: '1.6rem',
                 }}>
                   CheapPass.eu
                 </span>
             </Link>
 
-            {/* Desktop Navigácia - ZVÄČŠENÉ PÍSMO (text-base + font-semibold) */}
+            {/* Desktop Navigácia */}
             <nav className="hidden md:flex items-center gap-8">
               <Link href="/produkty" className="text-gray-400 hover:text-white font-semibold text-base transition-colors relative group">
                 Produkty
@@ -57,7 +61,6 @@ export function Header() {
                 Ako to funguje
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--secondary-neon)] transition-all group-hover:w-full"></span>
               </Link>
-              {/* PRIDANÉ FAQ */}
               <Link href="/faq" className="text-gray-400 hover:text-white font-semibold text-base transition-colors relative group">
                 FAQ
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--secondary-neon)] transition-all group-hover:w-full"></span>
@@ -70,7 +73,7 @@ export function Header() {
               </button>
             </nav>
 
-            {/* Akcie (Košík + Login) */}
+            {/* Akcie */}
             <div className="flex items-center gap-4">
               <button 
                 onClick={() => window.dispatchEvent(new Event("open-cart"))}
@@ -92,7 +95,6 @@ export function Header() {
                 PRIHLÁSIŤ SE
               </button>
 
-              {/* Mobilný menu trigger */}
               <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="md:hidden p-2 text-gray-400 hover:text-white outline-none"
