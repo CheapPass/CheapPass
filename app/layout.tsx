@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/logo.png", // Cesta k obrázku image_a1c1d4.png, ktorý si nahráš do public priečinka
+        url: "/logoo.png", // Cesta k obrázku image_a1c1d4.png, ktorý si nahráš do public priečinka
         // Pre istotu môžeme definovať, že toto je aj favicon a apple-touch-icon
-        href: "/logo.png",
+        href: "/logoo.png",
       }
     ],
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    shortcut: "/logoo.png",
+    apple: "/logoo.png",
   },
 };
 
