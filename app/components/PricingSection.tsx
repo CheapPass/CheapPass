@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { PassCard } from "../components/PassCard";
+import Link from "next/link";
 
 const products = [
   {
@@ -86,9 +87,12 @@ export function PricingSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex justify-center"
             >
-              {/* PassCard komponentu posielame dáta o produkte */}
-              {/* Vnútri PassCard musíš mať nastavené, aby sa "discount" zobrazoval zelenou */}
-              <PassCard {...product} />
+              {/* Pridávame buttonText a buttonLink špeciálne pre túto sekciu */}
+              <PassCard 
+                {...product} 
+                buttonText="Pozrieť ponuku" 
+                buttonLink="/produkty" 
+              />
             </motion.div>
           ))}
         </div>

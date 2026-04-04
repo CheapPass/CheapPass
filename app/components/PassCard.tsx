@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
+import Link from "next/link"; // Importované pre navigáciu
 
-// Definícia typov pre TypeScript
+// Definícia typov pre TypeScript (rozšírené o buttonText a buttonLink)
 interface PassCardProps {
   title: string;
   image: string;
@@ -12,6 +13,8 @@ interface PassCardProps {
   discount?: number;
   features: string[];
   popular?: boolean;
+  buttonText?: string; // Nová voliteľná vlastnosť
+  buttonLink?: string; // Nová voliteľná vlastnosť
 }
 
 export function PassCard({
@@ -22,11 +25,13 @@ export function PassCard({
   discount = 0,
   features = [],
   popular = false,
+  buttonText = "Kúpiť teraz", // Predvolený text, ak sa nepošle iný
+  buttonLink = "#",           // Predvolený link
 }: PassCardProps) {
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="relative rounded-2xl overflow-hidden border flex flex-col h-full w-full transition-shadow hover:shadow-2xl hover:shadow-purple-500/10"
+      className="relative rounded-2xl overflow-hidden border flex flex-col h-full w-full transition-shadow hover:shadow-2xl hover:shadow-purple-500/10 group"
       style={{
         background: 'rgba(26, 26, 46, 0.6)',
         borderColor: popular ? 'var(--primary-neon)' : 'rgba(138, 43, 226, 0.15)',
@@ -43,7 +48,11 @@ export function PassCard({
 
       {/* Obrázok produktu */}
       <div className="relative h-44 overflow-hidden bg-gray-900">
-        <img src={image} alt={title} className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" />
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" 
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a2e] to-transparent opacity-60"></div>
       </div>
 
@@ -59,12 +68,12 @@ export function PassCard({
             €{originalPrice.toFixed(2)}
           </span>
           
-          {/* OPRAVENÉ: Zelené percentá zľavy */}
+          {/* Zelené percentá zľavy */}
           <span 
             className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider" 
             style={{ 
-              background: 'rgba(0, 245, 255, 0.15)', // Jemné tyrkysové/zelené pozadie
-              color: 'var(--secondary-neon)',       // Žiarivá farba z tvojej témy
+              background: 'rgba(0, 245, 255, 0.15)', 
+              color: 'var(--secondary-neon)',      
               border: '1px solid rgba(0, 245, 255, 0.1)'
             }}
           >
@@ -82,13 +91,15 @@ export function PassCard({
           ))}
         </ul>
 
-        {/* Tlačidlo nákupu */}
-        <button 
-          className="w-full py-3.5 rounded-xl font-bold text-sm text-white shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 active:scale-[0.98] transition-all" 
-          style={{ background: 'var(--gradient-btn)' }}
-        >
-          Kúpiť teraz
-        </button>
+        {/* Tlačidlo nákupu / Link na produkty */}
+        <Link href={buttonLink} className="w-full outline-none">
+          <button 
+            className="w-full py-3.5 rounded-xl font-bold text-sm text-white shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 active:scale-[0.98] transition-all outline-none" 
+            style={{ background: 'var(--gradient-btn)' }}
+          >
+            {buttonText}
+          </button>
+        </Link>
       </div>
     </motion.div>
   );
