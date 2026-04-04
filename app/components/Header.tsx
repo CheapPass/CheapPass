@@ -25,13 +25,23 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group transition-transform hover:scale-105">
+            {/* Logo - OPRAVENÉ pre biely text a gradient koncovku */}
+            <Link href="/" className="flex items-center gap-2.5 group transition-transform hover:scale-105 outline-none">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20" style={{ background: 'var(--gradient-btn)' }}>
                 <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-black text-xl tracking-tight text-white">
-                CheapPass.eu
+              <span className="font-black text-xl tracking-tight text-white flex items-center">
+                CheapPass
+                <span style={{
+                  background: 'var(--gradient-btn)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  display: 'inline-block',
+                  marginLeft: '1px' // Malý odstup od textu
+                }}>
+                  .eu
+                </span>
               </span>
             </Link>
 
@@ -63,14 +73,14 @@ export function Header() {
                   <span className="absolute top-1 right-1 w-2 h-2 bg-purple-500 rounded-full border-2 border-[#0d0d1a]"></span>
                </button>
                
-               <button className="hidden sm:block px-5 py-2 rounded-xl font-bold text-xs text-white shadow-lg shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all" 
+               <button className="hidden sm:block px-5 py-2 rounded-xl font-bold text-xs text-white shadow-lg shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all outline-none" 
                        style={{ background: 'var(--gradient-btn)' }}>
                   PRIHLÁSIŤ SA
                </button>
 
                {/* Mobilné Menu Toggle */}
                <button 
-                 className="md:hidden p-2 text-gray-400 hover:text-white"
+                 className="md:hidden p-2 text-gray-400 hover:text-white outline-none"
                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                   {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -85,6 +95,7 @@ export function Header() {
           <motion.div 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t border-white/5 bg-[#0d0d1a] px-4 py-6 space-y-4"
           >
             <Link href="/ponuka" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>Ponuka</Link>
@@ -92,11 +103,11 @@ export function Header() {
             <Link href="/faq" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
             <button 
               onClick={() => { setIsContactOpen(true); setIsMobileMenuOpen(false); }}
-              className="block text-gray-400 font-medium w-full text-left"
+              className="block text-gray-400 font-medium w-full text-left outline-none"
             >
               Kontakt
             </button>
-            <button className="w-full py-3 rounded-xl font-bold text-white text-sm" style={{ background: 'var(--gradient-btn)' }}>
+            <button className="w-full py-3 rounded-xl font-bold text-white text-sm outline-none" style={{ background: 'var(--gradient-btn)' }}>
               PRIHLÁSIŤ SA
             </button>
           </motion.div>

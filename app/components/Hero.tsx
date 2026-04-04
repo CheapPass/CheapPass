@@ -3,15 +3,18 @@
 import { motion } from "framer-motion";
 import { Gamepad2, TrendingDown } from "lucide-react";
 import { FloatingReviews } from "./FloatingReviews";
+import Link from "next/link";
 
-// Komponent Button pre Hero sekciu - upravený na menšie rozmery
-const Button = ({ children, className, style }: any) => (
-  <button 
-    className={`flex items-center justify-center font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer text-sm ${className}`} 
-    style={style}
-  >
-    {children}
-  </button>
+// Komponent Button upravený tak, aby podporoval Next.js Link
+const HeroButton = ({ children, className, style, href }: any) => (
+  <Link href={href} className="w-full sm:w-auto">
+    <button 
+      className={`w-full flex items-center justify-center font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer text-sm ${className}`} 
+      style={style}
+    >
+      {children}
+    </button>
+  </Link>
 );
 
 export function Hero() {
@@ -41,10 +44,10 @@ export function Hero() {
         </div>
       </div>
 
-      {/* 3. Hlavný obsah (Zmenšený text a medzery) */}
+      {/* 3. Hlavný obsah */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-12">
         
-        {/* Nadpis - Zmenšený na text-6xl (z text-9xl) */}
+        {/* Nadpis */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,7 +65,7 @@ export function Hero() {
           </span>
         </motion.h1>
 
-        {/* Podnadpis - Zmenšený na text-lg (z text-2xl) */}
+        {/* Podnadpis */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -74,22 +77,24 @@ export function Hero() {
           Ušetrite až <span className="text-white font-bold">50%</span> na vašich herných passoch.
         </motion.p>
 
-        {/* Tlačidlá - Zmenšené (px-8 py-3.5) */}
+        {/* Tlačidlá - Teraz s funkčnými odkazmi */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-5 justify-center items-center"
         >
-          <Button
+          <HeroButton
+            href="/ponuka"
             className="text-white px-8 py-3.5 rounded-xl shadow-[0_6px_24px_rgba(138,43,226,0.3)]"
             style={{ background: 'var(--gradient-btn)' }}
           >
             <Gamepad2 className="w-5 h-5 mr-2.5" />
             Prehliadnuť ponuku
-          </Button>
+          </HeroButton>
           
-          <Button
+          <HeroButton
+            href="/ako-to-funguje"
             className="border-2 text-white px-8 py-3.5 rounded-xl backdrop-blur-md"
             style={{
               borderColor: 'var(--primary-neon)',
@@ -98,10 +103,10 @@ export function Hero() {
           >
             <TrendingDown className="w-5 h-5 mr-2.5" />
             Ako to funguje
-          </Button>
+          </HeroButton>
         </motion.div>
 
-        {/* Štatistiky - Zmenšený text a medzery */}
+        {/* Štatistiky */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -110,7 +115,7 @@ export function Hero() {
         >
           <div className="group cursor-default">
             <div className="text-4xl font-black mb-1.5 text-white group-hover:text-[var(--secondary-neon)] transition-colors">100%</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: 'var(--text-muted)' }}>Garancia spokojnosti</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: 'var(--text-muted)' }}>Garancia spokojnosti</div>
           </div>
           <div className="group cursor-default">
             <div className="text-4xl font-black mb-1.5 text-white group-hover:text-[var(--primary-neon)] transition-colors">200+</div>
