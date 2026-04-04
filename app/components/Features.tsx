@@ -8,30 +8,37 @@ const features = [
     icon: Shield,
     title: "100% Bezpečné",
     subtitle: "Oficiálny Gift Systém",
-    description: "Všetky passy doručujeme výhradne cez oficiálnu funkciu \"Donate\" priamo v hre. Žiadne prihlasovanie, žiadne riziko banu.",
-    // Farby pre ikonky:
-    color: "linear-gradient(135deg, #8a2be2 0%, #6a1bb2 100%)", // Fialová
+    description: "Všetky passy doručujeme výhradne cez oficiálnu funkciu \"Donate\" priamo v hre.",
+    color: "#8a2be2", // Fialová
+    bgLight: "rgba(138, 43, 226, 0.1)", // Jemné fialové pozadie
+    glow: "rgba(138, 43, 226, 0.2)"
   },
   {
     icon: Clock,
     title: "Do 24 hodín",
     subtitle: "Ručné spracovanie",
-    description: "Garantujeme doručenie do 24 hodín od prijatia žiadosti o priateľstvo v hre. O stave vás budeme informovať.",
-    color: "linear-gradient(135deg, #00f5ff 0%, #00c5cf 100%)", // Tyrkysová
+    description: "Garantujeme doručenie do 24 hodín od prijatia žiadosti o priateľstvo v hre.",
+    color: "#00f5ff", // Tyrkysová
+    bgLight: "rgba(0, 245, 255, 0.08)", // Jemné tyrkysové pozadie
+    glow: "rgba(0, 245, 255, 0.15)"
   },
   {
     icon: Zap,
     title: "Discord podpora",
     subtitle: "Sme tu pre vás osobne",
-    description: "Máte otázky? Pripojte sa na náš Discord! Sme online takmer stále a odpovedáme okamžite a ľudsky.",
-    color: "linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%)", // Ružová
+    description: "Máte otázky? Pripojte sa na náš Discord! Sme online takmer stále.",
+    color: "#ff6b9d", // Ružová
+    bgLight: "rgba(255, 107, 157, 0.08)", // Jemné ružové pozadie
+    glow: "rgba(255, 107, 157, 0.15)"
   },
   {
     icon: Users,
     title: "Férový projekt",
     subtitle: "Budujeme komunitu",
-    description: "Naším cieľom je priniesť férové ceny pre každého hráča. Každá objednávka je pre nás dôležitá.",
-    color: "linear-gradient(135deg, #feca57 0%, #ff9f43 100%)", // Žltá/Oranžová
+    description: "Naším cieľom je priniesť férové ceny pre každého hráča.",
+    color: "#feca57", // Oranžová
+    bgLight: "rgba(254, 202, 87, 0.08)", // Jemné oranžové pozadie
+    glow: "rgba(254, 202, 87, 0.15)"
   },
 ];
 
@@ -43,7 +50,6 @@ export function Features() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold mb-3" style={{
@@ -54,9 +60,6 @@ export function Features() {
           }}>
             Prečo si vybrať CheapPass?
           </h2>
-          <p className="text-sm max-w-xl mx-auto" style={{ color: 'var(--text-muted)' }}>
-            Poskytujeme najlepšie ceny a služby pre hráčov po celej Európe.
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -66,27 +69,36 @@ export function Features() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }} // Pridané jemné zväčšenie pri hoveri
-              className="border rounded-2xl p-5 shadow-lg transition-all backdrop-blur-sm"
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="relative border rounded-3xl p-6 transition-all overflow-hidden group"
               style={{
-                // OPRAVA: Pozadie karty je teraz priehľadné s jemným blur-om
-                background: 'rgba(13, 13, 26, 0.2)', // Veľmi priehľadné tmavé
-                borderColor: 'rgba(138, 43, 226, 0.1)',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.15)'
+                // TU JE ZMENA: Každá karta má teraz svoje vlastné farebné pozadie
+                background: feature.bgLight,
+                borderColor: 'rgba(255, 255, 255, 0.05)',
+                boxShadow: `0 10px 30px -10px ${feature.glow}`
               }}
             >
-              {/* Ikonka s gradientom na pozadí */}
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
+              {/* Dekoratívny odlesk v rohu */}
+              <div 
+                className="absolute -right-4 -top-4 w-16 h-16 blur-2xl rounded-full opacity-20"
                 style={{ background: feature.color }}
+              />
+
+              <div
+                className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 shadow-lg"
+                style={{ background: `linear-gradient(135deg, ${feature.color} 0%, #000 150%)` }}
               >
-                <feature.icon className="w-5 h-5 text-white" />
+                <feature.icon className="w-6 h-6 text-white" />
               </div>
               
-              <h3 className="text-lg font-bold mb-1" style={{ color: 'var(--text-main)' }}>{feature.title}</h3>
-              <p className="text-[10px] uppercase tracking-wider mb-2 font-black" style={{ color: 'var(--secondary-neon)' }}>{feature.subtitle}</p>
-              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>{feature.description}</p>
+              <h3 className="text-xl font-bold mb-1 text-white">{feature.title}</h3>
+              <p className="text-[10px] uppercase tracking-widest mb-3 font-black" style={{ color: feature.color }}>
+                {feature.subtitle}
+              </p>
+              <p className="text-xs leading-relaxed text-gray-400">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </div>
