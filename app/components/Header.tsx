@@ -31,7 +31,7 @@ export function Header() {
                 <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-black text-xl tracking-tight text-white">
-                CheapPass<span className="text-purple-400">.eu</span>
+                CheapPass.eu
               </span>
             </Link>
 

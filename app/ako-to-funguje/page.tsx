@@ -12,12 +12,12 @@ const steps = [
   {
     icon: MessageCircle,
     title: "2. Kontaktujte nás",
-    description: "Napíšte nám na Discord alebo email s informáciou o produkte. Odpovedáme väčšinou hneď, určite do 24 hodín.",
+    description: "Napíšte nám na Discord alebo email ak máte niaku nejastnosť / otázku. Odpovedáme väčšinou hneď, určite do 24 hodín.",
   },
   {
     icon: Gift,
     title: "3. GIFT systém",
-    description: "Po uhradení platby vám produkt zašleme cez oficiálny GIFT systém hry. Nepotrebujeme vaše prihlasovacie údaje.",
+    description: "Po uhradení platby vám pošleme žiadosť o priateľstvo (Friend Request). Po uplynutí 24 hodín, odkedy sme priateľmi v hre (podmienka Supercellu), vám produkt zašleme cez oficiálny GIFT systém. Nepotrebujeme vaše prihlasovacie údaje. POZOR! Hra Clash of Clans po novom vyžaduje, aby sme boli priateľmi minimálne 7 dní pred zaslaním darčeka.",
   },
   {
     icon: CheckCircle,
@@ -29,7 +29,7 @@ const steps = [
 const features = [
   { icon: Shield, title: "100% Legálne", description: "Oficiálny GIFT systém hry." },
   { icon: Lock, title: "Bezpečné", description: "Bez prístupu k vášmu účtu." },
-  { icon: Clock, title: "Rýchle", description: "Doručenie už do pár minút." },
+  { icon: Clock, title: "Rýchle", description: "Doručenie už do 24 hod." },
   { icon: Zap, title: "Lacné", description: "Úspora až 50% oproti hre." },
 ];
 
@@ -91,7 +91,7 @@ export default function HowItWorksPage() {
             <h2 className="text-3xl font-bold text-white mb-6">Čo je GIFT systém?</h2>
             <p className="text-gray-400 text-lg leading-relaxed">
               Ide o oficiálnu funkciu hier Supercell. Produkt vám príde priamo do hry ako darček. 
-              <span className="text-purple-400 font-bold"> Nepotrebujeme vaše heslo</span>, stačí nám váš Player Tag. 
+              <span className="text-purple-400 font-bold"> Nepotrebujeme vaše heslo</span>, stačí nám váš Supercel ID. 
               Je to najbezpečnejší spôsob nákupu.
             </p>
           </div>
