@@ -43,7 +43,7 @@ export default function HowItWorksPage() {
           className="text-center mb-20"
         >
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-            Ako to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">funguje?</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Ako to funguje?</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Získanie lacnejšieho passu nikdy nebolo jednoduchšie. Stačia vám tieto 4 kroky.

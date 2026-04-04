@@ -73,10 +73,6 @@ export function Footer() {
                   <span>info@cheappass.eu</span>
                 </button>
                 <div className="flex items-center gap-3">
-                  <Shield className="w-5 h-5 text-gray-500" />
-                  <span>100% Bezpečné platby</span>
-                </div>
-                <div className="flex items-center gap-3">
                   <Info className="w-5 h-5 text-gray-500" />
                   <span>24/7 Zákaznícka podpora</span>
                 </div>
