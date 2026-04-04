@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Star } from "lucide-react";
-import Link from "next/link"; // Importované pre navigáciu
+import { Check, Star, ShoppingCart, ArrowRight } from "lucide-react";
+import { useCart } from "../context/CartContext";
+import Link from "next/link";
 
-// Definícia typov pre TypeScript (rozšírené o buttonText a buttonLink)
 interface PassCardProps {
+  id?: string;
   title: string;
   image: string;
   originalPrice?: number;
@@ -13,11 +14,14 @@ interface PassCardProps {
   discount?: number;
   features: string[];
   popular?: boolean;
-  buttonText?: string; // Nová voliteľná vlastnosť
-  buttonLink?: string; // Nová voliteľná vlastnosť
+  category?: string;
+  // Pridané props pre odstránenie TS chyby
+  buttonText?: string;
+  buttonLink?: string;
 }
 
 export function PassCard({
+  id,
   title,
   image,
   originalPrice = 0,
@@ -25,81 +29,103 @@ export function PassCard({
   discount = 0,
   features = [],
   popular = false,
-  buttonText = "Kúpiť teraz", // Predvolený text, ak sa nepošle iný
-  buttonLink = "#",           // Predvolený link
+  category = "pass",
+  buttonText,
+  buttonLink,
 }: PassCardProps) {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: id || title.toLowerCase().replace(/\s+/g, "-"),
+      title,
+      image,
+      discountedPrice,
+      originalPrice,
+      category,
+      quantity: 1,
+    });
+  };
+
+  // Ak máme buttonLink, vyrenderujeme Link, inak klasické Add to Cart tlačidlo
+  const renderButton = () => {
+    if (buttonLink) {
+      return (
+        <Link 
+          href={buttonLink}
+          className="w-full py-3.5 rounded-xl font-bold text-sm text-white transition-all flex items-center justify-center gap-2 hover:scale-[1.02]"
+          style={{ background: 'var(--gradient-btn)' }}
+        >
+          {buttonText || "Pozrieť ponuku"}
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      );
+    }
+
+    return (
+      <button 
+        onClick={handleAddToCart}
+        className="w-full py-3.5 rounded-xl font-bold text-sm text-white transition-all flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]" 
+        style={{ background: 'var(--gradient-btn)' }}
+      >
+        <ShoppingCart className="w-4 h-4" />
+        {buttonText || "Pridať do košíka"}
+      </button>
+    );
+  };
+
   return (
     <motion.div
       whileHover={{ y: -8 }}
       className="relative rounded-2xl overflow-hidden border flex flex-col h-full w-full transition-shadow hover:shadow-2xl hover:shadow-purple-500/10 group"
       style={{
         background: 'rgba(26, 26, 46, 0.6)',
-        borderColor: popular ? 'var(--primary-neon)' : 'rgba(138, 43, 226, 0.15)',
+        borderColor: popular ? 'rgba(138, 43, 226, 0.5)' : 'rgba(138, 43, 226, 0.15)',
       }}
     >
-      {/* Štítok pre populárne produkty */}
-      {popular && (
-        <div className="absolute top-3 right-3 z-10">
+      {/* Badge pre Popular/Zľavu */}
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
+        {popular && (
           <div className="flex items-center gap-1 text-white px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter" style={{ background: 'linear-gradient(135deg, #feca57 0%, #ff9f43 100%)' }}>
             <Star className="w-3 h-3 fill-current" /> Popular
           </div>
-        </div>
-      )}
-
-      {/* Obrázok produktu */}
-      <div className="relative h-44 overflow-hidden bg-gray-900">
-        <img 
-          src={image} 
-          alt={title} 
-          className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" 
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a2e] to-transparent opacity-60"></div>
+        )}
+        {discount > 0 && (
+          <div className="bg-red-500/20 border border-red-500/30 text-red-400 text-[10px] font-bold px-2 py-1 rounded-lg text-center">
+            -{discount}%
+          </div>
+        )}
       </div>
 
-      <div className="p-5 flex flex-col flex-1">
+      {/* Obrázok s maskou */}
+      <div className="relative h-44 overflow-hidden bg-gray-900">
+        <img src={image} alt={title} className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d1a] to-transparent"></div>
+      </div>
+
+      {/* Obsah */}
+      <div className="p-5 flex flex-col flex-1 bg-[#0d0d1a]/80 backdrop-blur-sm">
         <h3 className="text-lg font-bold mb-3 text-white tracking-tight">{title}</h3>
         
-        {/* Cenová sekcia */}
         <div className="mb-5 flex items-center gap-2.5">
-          <span className="text-2xl font-black text-[var(--secondary-neon)]">
+          <span className="text-2xl font-black text-cyan-400">
             €{discountedPrice.toFixed(2)}
           </span>
-          <span className="text-xs line-through text-gray-500/80">
+          <span className="text-xs line-through text-gray-500">
             €{originalPrice.toFixed(2)}
-          </span>
-          
-          {/* Zelené percentá zľavy */}
-          <span 
-            className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider" 
-            style={{ 
-              background: 'rgba(0, 245, 255, 0.15)', 
-              color: 'var(--secondary-neon)',      
-              border: '1px solid rgba(0, 245, 255, 0.1)'
-            }}
-          >
-            -{discount}%
           </span>
         </div>
 
-        {/* Zoznam výhod */}
         <ul className="space-y-2.5 mb-6 flex-1">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start gap-2.5 text-[11px] text-gray-400 leading-tight">
-              <Check className="w-3.5 h-3.5 mt-0.5 text-[var(--secondary-neon)] shrink-0" />
+              <Check className="w-3.5 h-3.5 mt-0.5 text-cyan-500 shrink-0" />
               <span>{feature}</span>
             </li>
           ))}
         </ul>
 
-        {/* Tlačidlo nákupu / Link na produkty */}
-        <Link href={buttonLink} className="w-full outline-none">
-          <button 
-            className="w-full py-3.5 rounded-xl font-bold text-sm text-white shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 active:scale-[0.98] transition-all outline-none" 
-            style={{ background: 'var(--gradient-btn)' }}
-          >
-            {buttonText}
-          </button>
-        </Link>
+        {renderButton()}
       </div>
     </motion.div>
   );
