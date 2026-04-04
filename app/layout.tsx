@@ -1,27 +1,19 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-// 1. Importuj CartProvider (skontroluj si cestu k súboru!)
-import { CartProvider } from "./context/CartContext"; 
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { CartProvider } from "./context/CartContext";
+import { CartModalWrapper } from "./components/CartModalWrapper";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "CheapPass.eu | Prémiové herné passy",
-  description: "Najlacnejšie herné predplatné na trhu.",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="sk">
-      <body className={inter.className}>
-        {/* 2. Obaľ CELÝ obsah (children) do CartProvideru */}
+      <body className="bg-[#0d0d1a] text-white">
         <CartProvider>
-          {children}
+          <Header />
+          <main>{children}</main>
+          {/* Tento wrapper už nepotrebuje posielať props manuálne v layoute */}
+          <CartModalWrapper />
+          <Footer />
         </CartProvider>
       </body>
     </html>
