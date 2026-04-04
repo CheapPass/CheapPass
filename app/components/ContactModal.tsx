@@ -66,7 +66,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <div className="space-y-4">
                 {/* Discord link */}
                 <motion.a
-                  href="https://discord.gg/cheappass"
+                  href="https://dsc.gg/cheappass"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02, x: 5 }}
