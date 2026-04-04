@@ -30,8 +30,6 @@ export function Header() {
               <div className="w-9 h-9 rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20" style={{ background: 'var(--gradient-btn)' }}>
                 <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-black text-xl tracking-tight text-white flex items-center">
-                CheapPass
                 <span style={{
                   background: 'var(--gradient-btn)',
                   WebkitBackgroundClip: 'text',
@@ -40,9 +38,8 @@ export function Header() {
                   display: 'inline-block',
                   marginLeft: '1px' // Malý odstup od textu
                 }}>
-                  .eu
+                  CheapPass.eu
                 </span>
-              </span>
             </Link>
 
             {/* Desktop Navigácia */}

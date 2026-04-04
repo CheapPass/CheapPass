@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 
-// Definícia typov, aby TypeScript vedel, čo sú tie dáta zač
+// Definícia typov pre TypeScript
 interface PassCardProps {
   title: string;
   image: string;
@@ -26,12 +26,13 @@ export function PassCard({
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="relative rounded-2xl overflow-hidden border flex flex-col h-full w-full"
+      className="relative rounded-2xl overflow-hidden border flex flex-col h-full w-full transition-shadow hover:shadow-2xl hover:shadow-purple-500/10"
       style={{
         background: 'rgba(26, 26, 46, 0.6)',
         borderColor: popular ? 'var(--primary-neon)' : 'rgba(138, 43, 226, 0.15)',
       }}
     >
+      {/* Štítok pre populárne produkty */}
       {popular && (
         <div className="absolute top-3 right-3 z-10">
           <div className="flex items-center gap-1 text-white px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter" style={{ background: 'linear-gradient(135deg, #feca57 0%, #ff9f43 100%)' }}>
@@ -40,36 +41,52 @@ export function PassCard({
         </div>
       )}
 
+      {/* Obrázok produktu */}
       <div className="relative h-44 overflow-hidden bg-gray-900">
-        <img src={image} alt={title} className="w-full h-full object-cover opacity-80" />
+        <img src={image} alt={title} className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a2e] to-transparent opacity-60"></div>
       </div>
 
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-lg font-bold mb-3 text-white">{title}</h3>
+        <h3 className="text-lg font-bold mb-3 text-white tracking-tight">{title}</h3>
         
-        <div className="mb-5 flex items-baseline gap-2">
-          {/* Pridané ? a predvolené hodnoty riešia chybu "possibly undefined" */}
+        {/* Cenová sekcia */}
+        <div className="mb-5 flex items-center gap-2.5">
           <span className="text-2xl font-black text-[var(--secondary-neon)]">
-            €{discountedPrice?.toFixed(2)}
+            €{discountedPrice.toFixed(2)}
           </span>
-          <span className="text-xs line-through text-gray-500">
-            €{originalPrice?.toFixed(2)}
+          <span className="text-xs line-through text-gray-500/80">
+            €{originalPrice.toFixed(2)}
           </span>
-          <span className="text-[10px] font-bold bg-red-500/20 text-red-500 px-1.5 py-0.5 rounded">
+          
+          {/* OPRAVENÉ: Zelené percentá zľavy */}
+          <span 
+            className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider" 
+            style={{ 
+              background: 'rgba(0, 245, 255, 0.15)', // Jemné tyrkysové/zelené pozadie
+              color: 'var(--secondary-neon)',       // Žiarivá farba z tvojej témy
+              border: '1px solid rgba(0, 245, 255, 0.1)'
+            }}
+          >
             -{discount}%
           </span>
         </div>
 
-        <ul className="space-y-2 mb-6 flex-1">
+        {/* Zoznam výhod */}
+        <ul className="space-y-2.5 mb-6 flex-1">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-2 text-xs text-gray-400">
-              <Check className="w-3.5 h-3.5 text-[var(--secondary-neon)]" />
+            <li key={index} className="flex items-start gap-2.5 text-[11px] text-gray-400 leading-tight">
+              <Check className="w-3.5 h-3.5 mt-0.5 text-[var(--secondary-neon)] shrink-0" />
               <span>{feature}</span>
             </li>
           ))}
         </ul>
 
-        <button className="w-full py-3 rounded-xl font-bold text-sm text-white" style={{ background: 'var(--gradient-btn)' }}>
+        {/* Tlačidlo nákupu */}
+        <button 
+          className="w-full py-3.5 rounded-xl font-bold text-sm text-white shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 active:scale-[0.98] transition-all" 
+          style={{ background: 'var(--gradient-btn)' }}
+        >
           Kúpiť teraz
         </button>
       </div>

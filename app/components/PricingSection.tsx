@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { PassCard } from "../components/PassCard";
 
-const passes = [
-{
+const products = [
+  {
     title: "Clash of Clans Gold Pass",
     image: "/coc.png",
     originalPrice: 6.50,
@@ -20,7 +20,7 @@ const passes = [
   },
   {
     title: "Clash Royale Royal Pass",
-    image: "/cr.png", // Opravená cesta k obrázku
+    image: "/cr.png", 
     originalPrice: 11.50,
     discountedPrice: 6.99,
     discount: 39,
@@ -34,7 +34,7 @@ const passes = [
   },
   {
     title: "Clash of Clans Event Pass",
-    image: "/coc.png", // Opravená cesta k obrázku
+    image: "/coc.png", 
     originalPrice: 4.00,
     discountedPrice: 3.00,
     discount: 25,
@@ -68,16 +68,16 @@ export function PricingSection() {
             backgroundClip: 'text',
             display: 'inline-block'
           }}>
-            Dostupné herné passy
+            Populárne herné produkty
           </h2>
           <p className="text-sm max-w-xl mx-auto" style={{ color: 'var(--text-muted)' }}>
-            Vyberte si zo širokej ponuky herných predplatných za najlepšie ceny.
+            Vyberte si z našej ponuky najobľúbenejších herných produktov za bezkonkurenčné ceny.
           </p>
         </motion.div>
 
-        {/* Grid s kartami */}
+        {/* Grid s produktami */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {passes.map((pass, index) => (
+          {products.map((product, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -86,7 +86,9 @@ export function PricingSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex justify-center"
             >
-              <PassCard {...pass} />
+              {/* PassCard komponentu posielame dáta o produkte */}
+              {/* Vnútri PassCard musíš mať nastavené, aby sa "discount" zobrazoval zelenou */}
+              <PassCard {...product} />
             </motion.div>
           ))}
         </div>
