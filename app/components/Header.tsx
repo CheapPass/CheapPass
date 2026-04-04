@@ -47,8 +47,8 @@ export function Header() {
 
             {/* Desktop Navigácia */}
             <nav className="hidden md:flex items-center gap-8">
-              <Link href="/ponuka" className="text-sm font-medium text-gray-400 hover:text-white transition-all hover:translate-y-[-1px]">
-                Ponuka
+              <Link href="/produkty" className="text-sm font-medium text-gray-400 hover:text-white transition-all hover:translate-y-[-1px]">
+                Produkty
               </Link>
               <Link href="/ako-to-funguje" className="text-sm font-medium text-gray-400 hover:text-white transition-all hover:translate-y-[-1px]">
                 Ako to funguje
@@ -98,7 +98,7 @@ export function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t border-white/5 bg-[#0d0d1a] px-4 py-6 space-y-4"
           >
-            <Link href="/ponuka" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>Ponuka</Link>
+            <Link href="/produkty" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>Produkty</Link>
             <Link href="/ako-to-funguje" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>Ako to funguje</Link>
             <Link href="/faq" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
             <button 
