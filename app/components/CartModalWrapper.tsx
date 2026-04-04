@@ -7,7 +7,6 @@ export function CartModalWrapper() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Načúvame na vlastný event, aby sme mohli košík otvoriť odkiaľkoľvek
     const handleOpenCart = () => setIsOpen(true);
     window.addEventListener("open-cart", handleOpenCart);
     return () => window.removeEventListener("open-cart", handleOpenCart);

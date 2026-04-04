@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useState } from 'react';
 
-// Definícia toho, ako vyzerá jeden produkt v košíku
 export interface CartItem {
   id: string;
   title: string;
@@ -33,7 +32,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (existing) {
         return prev.map(i => i.id === newItem.id ? { ...i, quantity: i.quantity + 1 } : i);
       }
-      return [...prev, newItem];
+      return [...prev, { ...newItem, quantity: 1 }];
     });
   };
 
