@@ -37,19 +37,24 @@ export function Header() {
               </span>
             </Link>
 
-            {/* Desktop Navigácia */}
+            {/* Desktop Navigácia - ZVÄČŠENÉ PÍSMO (text-base + font-semibold) */}
             <nav className="hidden md:flex items-center gap-8">
-              <Link href="/produkty" className="text-gray-400 hover:text-white font-medium text-sm transition-colors relative group">
+              <Link href="/produkty" className="text-gray-400 hover:text-white font-semibold text-base transition-colors relative group">
                 Produkty
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--secondary-neon)] transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="/ako-to-funguje" className="text-gray-400 hover:text-white font-medium text-sm transition-colors relative group">
+              <Link href="/ako-to-funguje" className="text-gray-400 hover:text-white font-semibold text-base transition-colors relative group">
                 Ako to funguje
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--secondary-neon)] transition-all group-hover:w-full"></span>
+              </Link>
+              {/* PRIDANÉ FAQ */}
+              <Link href="/faq" className="text-gray-400 hover:text-white font-semibold text-base transition-colors relative group">
+                FAQ
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--secondary-neon)] transition-all group-hover:w-full"></span>
               </Link>
               <button 
                 onClick={() => setIsContactOpen(true)}
-                className="text-gray-400 hover:text-white font-medium text-sm transition-colors outline-none cursor-pointer"
+                className="text-gray-400 hover:text-white font-semibold text-base transition-colors outline-none cursor-pointer"
               >
                 Kontakt
               </button>
@@ -97,15 +102,16 @@ export function Header() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden border-t border-white/5 bg-[#0d0d1a] px-4 py-6 space-y-4"
             >
-              <Link href="/produkty" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>Produkty</Link>
-              <Link href="/ako-to-funguje" className="block text-gray-400 font-medium" onClick={() => setIsMobileMenuOpen(false)}>Ako to funguje</Link>
+              <Link href="/produkty" className="block text-gray-300 font-bold text-lg" onClick={() => setIsMobileMenuOpen(false)}>Produkty</Link>
+              <Link href="/ako-to-funguje" className="block text-gray-300 font-bold text-lg" onClick={() => setIsMobileMenuOpen(false)}>Ako to funguje</Link>
+              <Link href="/faq" className="block text-gray-300 font-bold text-lg" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
               <button 
                 onClick={() => { setIsContactOpen(true); setIsMobileMenuOpen(false); }}
-                className="block text-gray-400 font-medium w-full text-left outline-none"
+                className="block text-gray-300 font-bold text-lg w-full text-left outline-none"
               >
                 Kontakt
               </button>
-              <button className="w-full py-3 rounded-xl font-bold text-white text-sm outline-none" style={{ background: 'var(--gradient-btn)' }}>
+              <button className="w-full py-4 rounded-xl font-bold text-white text-base outline-none mt-2" style={{ background: 'var(--gradient-btn)' }}>
                 PRIHLÁSIŤ SA
               </button>
             </motion.div>
