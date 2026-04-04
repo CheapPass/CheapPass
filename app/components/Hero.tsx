@@ -85,7 +85,7 @@ export function Hero() {
           className="flex flex-col sm:flex-row gap-5 justify-center items-center"
         >
           <HeroButton
-            href="/ponuka"
+            href="/produkty"
             className="text-white px-8 py-3.5 rounded-xl shadow-[0_6px_24px_rgba(138,43,226,0.3)]"
             style={{ background: 'var(--gradient-btn)' }}
           >
