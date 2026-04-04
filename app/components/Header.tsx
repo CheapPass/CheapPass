@@ -32,7 +32,7 @@ export function Header() {
               <div className="w-9 h-9 rounded-xl flex items-center justify-center p-2 transition-transform group-hover:rotate-12 shadow-lg shadow-purple-500/20" style={{ background: 'var(--gradient-btn)' }}>
                 <img src="/logo.png" alt="Logo" className="w-full h-full object-contain brightness-0 invert" />
               </div>
-                <span className="text-[var(--secondary-neon)]">CheapPass.eu</span>
+                <span className="text-[var(--gradient-btn)]">CheapPass.eu</span>
             </Link>
 
             {/* Desktop Navigácia - ZVÄČŠENÉ PÍSMO (text-base + font-semibold) */}
